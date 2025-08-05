@@ -5,7 +5,7 @@ import { Outlet } from "react-router";
 function App() {
   return (
     <>
-      <div className="container">
+      <div className="AppContainer">
         <Header />
         <Outlet />
       </div>

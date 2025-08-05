@@ -1,0 +1,105 @@
+.HeaderContainer {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100px;
+  padding: 20px 128px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: #d8ffd5; /* TODO: delete when design is ready */
+}
+
+.logo {
+  width: 255px;
+  height: 28px;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+
+.logo img {
+  width: 28px;
+  height: 28px;
+}
+
+.logoLink {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  color: #121417;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+}
+
+.navList {
+  display: flex;
+  flex-direction: row;
+  gap: 28px;
+}
+
+.navLink {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: #121417;
+
+  text-decoration: none;
+}
+
+.user {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 255px;
+  gap: 16px;
+}
+
+.login {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.login img {
+  width: 20px;
+  height: 20px;
+}
+
+.login button {
+  border: none;
+  background-color: transparent;
+
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  color: #121417;
+  cursor: pointer;
+}
+
+.registrationButton {
+  border: none;
+  background: #121417;
+  border-radius: 12px;
+  padding: 14px 39px;
+  width: 166px;
+  height: 48px;
+
+  cursor: pointer;
+
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  color: #fff;
+}

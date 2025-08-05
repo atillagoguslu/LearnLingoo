@@ -1,16 +1,47 @@
 import s from "./Header.module.css";
+import { ukraine, login } from "../constants/ImportedImages.js";
+import { NavLink } from "react-router";
 
 const Header = () => {
-  return (
-    <header className={s.container}>
-      <h1>Header</h1>
+  const handleLogin = () => {
+    console.log("Login");
+  };
 
-      <div className={s.nav}>
-        <ul>
-          <li>Home</li>
-          <li>Teachers</li>
-          <li>Favorites</li>
-        </ul>
+  const handleRegistration = () => {
+    console.log("Registration");
+  };
+
+  return (
+    <header className={s.HeaderContainer}>
+      <div className={s.logo}>
+        <img src={ukraine} alt="logo" />
+        <NavLink className={s.logoLink} to="/">
+          LearnLingo
+        </NavLink>
+      </div>
+      <nav className={s.nav}>
+        <div className={s.navList}>
+          <NavLink className={s.navLink} to="/">
+            Home
+          </NavLink>
+          <NavLink className={s.navLink} to="/teachers">
+            Teachers
+          </NavLink>
+          <NavLink className={s.navLink} to="/favorites">
+            Favorites
+          </NavLink>
+        </div>
+      </nav>
+      <div className={s.user}>
+        <div className={s.login}>
+          <img src={login} alt="login-logo" />
+          <button className={s.loginButton} onClick={handleLogin}>
+            Login
+          </button>
+        </div>
+        <button className={s.registrationButton} onClick={handleRegistration}>
+          Registration
+        </button>
       </div>
     </header>
   );

@@ -1,27 +1,54 @@
 :root {
   font-size: 16px;
   line-height: 1.14;
-/* 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
-}
 
-:root {
-  --font-family: "Roboto", 'Courier New', Courier, monospace;
+  --font-family: "Roboto", "Courier New", Courier, monospace;
   --color-primary: #9fb7ce;
   --color-secondary: #bfd6ea;
   --text-primary: #121417;
-  --text-secondary:  rgba(18, 20, 23, 0.2);
+  --text-secondary: rgba(18, 20, 23, 0.2);
   --font-weight-400: 400;
   --font-weight-500: 500;
-  
 }
-
-
 
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+main * {
+  display: flex;
+}
+
+/* Override for elements that shouldn't be flex */
+img,
+input,
+textarea,
+select,
+button,
+a,
+span,
+label,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  display: initial;
+}
+
+/* For elements that should be block-level but with flex */
+div,
+section,
+article,
+aside,
+header,
+footer,
+nav,
+main {
+  display: flex;
+  flex-direction: column;
 }

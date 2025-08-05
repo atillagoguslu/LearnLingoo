@@ -1,8 +1,6 @@
-.container {
+.AppContainer {
   width: 1440px;
-  height: 100vh;
+  min-height: 800px;
   margin: 0 auto;
   background-color: #ffd5d5;
 }
-
-
