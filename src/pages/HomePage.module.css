@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 568px;
+  background-color: #fff8d7;
+  gap: 24px;
+}
+
+.heroPart {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  margin: 0 64px;
+}

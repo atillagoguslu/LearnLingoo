@@ -1,0 +1,26 @@
+.imagePartContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  min-width: 568px;
+  min-height: 530px;
+  background-color: #bfd6ea;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.avatar {
+  width: 339px;
+  height: 339px;
+}
+
+.blueiMac {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 339px;
+  height: 339px;
+}

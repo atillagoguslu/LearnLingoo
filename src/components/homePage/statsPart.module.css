@@ -1,0 +1,45 @@
+.statsContainer {
+  border: 1.5px dashed #9fb7ce;
+  border-radius: 30px;
+  height: 116px;
+  margin: 0 64px;
+}
+
+.innerContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  width: 100%;
+  padding: 40px 122px;
+}
+
+.statsPart {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  /* width: 50%; */
+}
+
+.number {
+  width: 55%;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 114%;
+  letter-spacing: -0.02em;
+  color: #121417;
+  text-wrap: nowrap;
+}
+
+.text {
+  width: 45%;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.02em;
+  color: rgba(18, 20, 23, 0.7);
+  text-wrap: wrap;
+}

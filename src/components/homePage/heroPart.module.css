@@ -1,0 +1,77 @@
+.heroPartContainer {
+  display: flex;
+  flex-direction: column;
+  min-width: 720px;
+  padding: 98px 64px;
+  background-color: #f8f8f8;
+  border-radius: 30px;
+}
+
+.title {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 117%;
+  letter-spacing: -0.02em;
+  color: #121417;
+}
+
+.highlightText {
+  font-style: italic;
+  font-weight: 400;
+  padding: 0 8px;
+  border-radius: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.highlight {
+  position: absolute;
+  width: 204px;
+  height: 40px;
+  top: 13px;
+  left: 4px;
+  z-index: -1;
+  background-color: var(--color-secondary);
+  border-radius: 10px;
+}
+
+.description {
+  max-width: 471px;
+  margin-top: 32px;
+
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 137%;
+  letter-spacing: -0.02em;
+  color: #121417;
+}
+
+.button {
+  margin-top: 64px;
+
+  border-radius: 12px;
+  padding: 16px 88px;
+  width: 267px;
+  height: 60px;
+
+  background: #f4c550;
+  border: none;
+  cursor: pointer;
+}
+
+.buttonText {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 156%;
+  color: #121417;
+  text-wrap: nowrap;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 33px;
+}
