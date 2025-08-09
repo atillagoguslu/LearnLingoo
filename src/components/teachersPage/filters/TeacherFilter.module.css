@@ -1,0 +1,36 @@
+.teacherFilterContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.filterPart {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filterText {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  color: #8a8a89;
+}
+
+.filterSelect {
+  border-radius: 14px;
+  padding: 16px 16px 16px 16px;
+  width: 221px;
+  height: 50px;
+  background-color: #ffffff;
+  border: none;
+  outline: none;
+
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 111%;
+  color: #121417;
+}
+

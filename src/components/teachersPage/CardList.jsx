@@ -1,9 +1,16 @@
 import s from "./CardList.module.css";
+import Card from "./Card.jsx";
 
 const CardList = () => {
   return (
-    <div className={s.container}>
-      <h1>CardList</h1>
+    <div className={s.cardListContainer}>
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
     </div>
   );
 };

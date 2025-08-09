@@ -7,8 +7,6 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
-  background-color: #d8ffd5; /* TODO: delete when design is ready */
 }
 
 .logo {

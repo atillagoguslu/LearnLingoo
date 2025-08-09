@@ -1,0 +1,7 @@
+.cardListContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  background-color: #7d9eb4;
+}
