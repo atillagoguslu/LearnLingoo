@@ -1,12 +1,40 @@
-# React + Vite
+# LearnLingo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Basic React + Vite web app with Firebase (REST) for auth and Realtime Database.
 
-Currently, two official plugins are available:
+## Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Copy `.env.example` to `.env` and fill values.
+2. Install deps: `npm i`
+3. Run dev: `npm run dev`
 
-## Expanding the ESLint configuration
+## Env
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Create `.env` based on:
+
+```
+VITE_FIREBASE_API_KEY=YOUR_KEY
+VITE_FIREBASE_DB_URL=https://YOUR_PROJECT-id-default-rtdb.firebaseio.com
+```
+
+## Firebase via REST
+
+- Auth endpoints: Identity Toolkit (sign up/in, refresh).
+- Database: Realtime Database JSON REST under `VITE_FIREBASE_DB_URL`.
+
+Service: `src/db/dbService.js`
+
+- `auth.signUp({ email, password, displayName })`
+- `auth.signIn({ email, password })`
+- `auth.getCurrentUser()` / `auth.signOut()`
+- `teachers.getPage({ limit, startAfterKey })`
+- `teachers.getById(teacherId)`
+- `favorites.add/remove/toggle/isFavorite/getAllIdsForCurrentUser()`
+- `bookings.create({...})`
+
+Local storage utils: `src/utilities/localStorage.js`.
+
+## Notes
+
+- Add your Firebase Realtime Database rules to allow read for teachers and authenticated reads/writes for user-specific data.
+- To seed example teachers, call `teachers.seedFromLocalSample()` from a dev-only action.

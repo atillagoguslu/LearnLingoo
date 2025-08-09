@@ -1,4 +1,3 @@
-
 import s from "./CardList.module.css";
 
 const CardList = () => {
