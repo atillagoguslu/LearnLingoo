@@ -85,11 +85,6 @@ const CardList = ({ limit = 4, filters = {} }) => {
           isLoading={isLoadingMore}
         />
       )}
-      {!isLoading && total > 0 && (
-        <div style={{ width: "100%", textAlign: "center", marginTop: 8 }}>
-          Showing {items.length} of {total}
-        </div>
-      )}
     </div>
   );
 };

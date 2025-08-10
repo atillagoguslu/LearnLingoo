@@ -1,6 +1,17 @@
 .AppContainer {
-  width: 1440px;
+  width: 100%;
   min-height: 8000px;
   margin: 0 auto;
-  background-color: #ffd5d5;
+}
+
+.inHomePage {
+  background-color: #fff;
+}
+
+.inTeachersPage {
+  background-color: #f8f8f8;
+}
+
+.inFavoritesPage {
+  background-color: #f8f8f8;
 }

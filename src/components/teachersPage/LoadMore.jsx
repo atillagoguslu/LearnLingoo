@@ -2,9 +2,9 @@ import s from "./LoadMore.module.css";
 
 const LoadMore = ({ onClick, disabled = false, isLoading = false }) => {
   return (
-    <div className={s.container}>
+    <div className={s.loadMoreContainer}>
       <button
-        className={s.button}
+        className={s.loadMoreButton}
         onClick={onClick}
         disabled={disabled || isLoading}
       >

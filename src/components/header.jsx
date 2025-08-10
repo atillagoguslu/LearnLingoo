@@ -1,15 +1,18 @@
+import { useState } from "react";
 import s from "./Header.module.css";
 import { ukraine, login } from "../constants/ImportedImages.js";
 import { NavLink } from "react-router";
+import LoginModal from "./modals/login.jsx";
+import RegistrationModal from "./modals/registration.jsx";
 
 const Header = () => {
-  const handleLogin = () => {
-    console.log("Login");
-  };
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
 
-  const handleRegistration = () => {
-    console.log("Registration");
-  };
+  const handleLogin = () => setIsLoginOpen(true);
+  const handleRegistration = () => setIsRegistrationOpen(true);
+  const closeLogin = () => setIsLoginOpen(false);
+  const closeRegistration = () => setIsRegistrationOpen(false);
 
   return (
     <header className={s.HeaderContainer}>
@@ -43,6 +46,9 @@ const Header = () => {
           Registration
         </button>
       </div>
+
+      {isLoginOpen && <LoginModal onClose={closeLogin} />}
+      {isRegistrationOpen && <RegistrationModal onClose={closeRegistration} />}
     </header>
   );
 };

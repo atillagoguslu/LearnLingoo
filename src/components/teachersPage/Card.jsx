@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, useCallback } from "react";
 import s from "./Card.module.css";
 import BookTrialLesson from "./BookTrialLesson";
+import modalStyles from "./BookTrialLesson.module.css";
 import {
   fav as favIcon,
   notFav as notFavIcon,
@@ -173,6 +174,15 @@ const Card = (props) => {
               </div>
             </div>
             {!isExpanded && (
+              <div className={s.bottomRowLevels}>
+                {levels.map((level) => (
+                  <div className={s.level} key={level}>
+                    <p>{level}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+            {!isExpanded && (
               <div className={s.readMore} onClick={() => setIsExpanded(true)}>
                 <p>Read more</p>
               </div>
@@ -248,12 +258,15 @@ const Card = (props) => {
           role="dialog"
           aria-modal="true"
           onClick={() => setIsModalOpen(false)}
-          className={s.modalOverlay}
+          className={modalStyles.modalOverlay}
         >
-          <div className={s.modalDialog} onClick={(e) => e.stopPropagation()}>
+          <div
+            className={modalStyles.modalDialog}
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               aria-label="Close"
-              className={s.modalClose}
+              className={modalStyles.modalClose}
               onClick={() => setIsModalOpen(false)}
             >
               ×
