@@ -1,5 +1,5 @@
 import "./App.css";
-import Header from "./components/Header.jsx";
+import Header from "./components/header.jsx";
 import { Outlet, useLocation } from "react-router";
 
 function App() {
