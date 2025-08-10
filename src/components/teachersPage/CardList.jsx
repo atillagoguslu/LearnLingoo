@@ -71,6 +71,8 @@ const CardList = ({ limit = 4, filters = {} }) => {
     loadFirstPage();
   }, [loadFirstPage]);
 
+  console.log(items);
+
   return (
     <div className={s.cardListContainer}>
       {isLoading && <div>Loading...</div>}

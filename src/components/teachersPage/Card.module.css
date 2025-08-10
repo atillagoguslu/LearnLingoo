@@ -250,3 +250,117 @@
   color: #121417;
   text-wrap: nowrap;
 }
+
+.expanded {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.experience {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #121417;
+}
+
+.reviewsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.reviewItem {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.reviewHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.reviewAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: #f4f4f4; /* gray circle */
+  color: #121417;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.reviewMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.reviewName {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #8a8a89;
+}
+
+.reviewRating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.reviewStar {
+  display: flex;
+  width: 16px;
+}
+
+.reviewRatingValue {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  color: #121417;
+}
+
+.reviewComment {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #121417;
+}
+
+.bookButton {
+  border-radius: 12px;
+  padding: 16px 48px;
+  width: 232px;
+  height: 60px;
+  background: #f4c550;
+  border: none;
+  cursor: pointer;
+
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 156%;
+  color: #121417;
+}

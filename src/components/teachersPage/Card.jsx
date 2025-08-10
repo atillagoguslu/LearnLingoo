@@ -6,7 +6,6 @@ import {
   notFav as notFavIcon,
   online as onlineIcon,
   star as starIcon,
-  avatar as defaultAvatar,
   book as bookIcon,
 } from "../../constants/ImportedImages";
 import {
@@ -111,74 +110,159 @@ const Card = (props) => {
   }, [isModalOpen]);
 
   return (
-    <div className={s.cardContainer}>
-      <div className={s.avatarColumn}>
-        <div className={s.avatarBox}>
-          <img
-            className={s.avatarImg}
-            src={avatarUrl || defaultAvatar}
-            alt={`${fullName} avatar`}
-            loading="lazy"
-          />
-          <img className={s.onlineDot} src={onlineIcon} alt="online" />
+    <>
+      <div className={s.cardContainer}>
+        <div className={s.avatarColumn}>
+          <div className={s.avatarBox}>
+            <img
+              className={s.avatarImg}
+              src={avatarUrl || defaultAvatar}
+              alt={`${fullName} avatar`}
+              loading="lazy"
+            />
+            <img className={s.onlineDot} src={onlineIcon} alt="online" />
+          </div>
         </div>
-      </div>
 
-      <div className={s.contentColumn}>
-        <div className={s.topRow}>
-          <div className={s.topRowTop}>
-            <div className={s.nameAndStatus}>
-              <div className={s.name}>
-                <p>Languages</p>
-                <p>{fullName}</p>
-              </div>
-              <div className={s.status}>
-                <div className={s.infos}>
-                  <ul>
-                    <li>
-                      <img src={bookIcon} alt="book" />
-                      <p>Lessons online</p>
-                    </li>
-                    <li>
-                      Lessons done: {lessonsDone}
-                    </li>
-                    <li>
-                      <img src={starIcon} alt="star" />
-                      Rating: {rating}
-                    </li>
-                    <li>Price / 1 hour: <span className={s.price}>{price}</span></li>
-                  </ul>
+        <div className={s.contentColumn}>
+          <div className={s.topRow}>
+            <div className={s.topRowTop}>
+              <div className={s.nameAndStatus}>
+                <div className={s.name}>
+                  <p>Languages</p>
+                  <p>{fullName}</p>
                 </div>
-                <div className={s.favButton}>
-                  <img src={isFavorite ? favIcon : notFavIcon} alt="favorite" />
+                <div className={s.status}>
+                  <div className={s.infos}>
+                    <ul>
+                      <li>
+                        <img src={bookIcon} alt="book" />
+                        <p>Lessons online</p>
+                      </li>
+                      <li>Lessons done: {lessonsDone}</li>
+                      <li>
+                        <img src={starIcon} alt="star" />
+                        Rating: {rating}
+                      </li>
+                      <li>
+                        Price / 1 hour: <span className={s.price}>{price}</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className={s.favButton} onClick={toggleFavorite}>
+                    <img
+                      src={isFavorite ? favIcon : notFavIcon}
+                      alt="favorite"
+                    />
+                  </div>
                 </div>
               </div>
+              <div className={s.attributes}>
+                <p>
+                  <span className={s.attributesTitle}>Speaks:</span>{" "}
+                  <span className={s.languages}>{languages}</span>
+                </p>
+                <p>
+                  <span className={s.attributesTitle}>Lesson Info:</span>{" "}
+                  {lessonInfo}
+                </p>
+                <p>
+                  <span className={s.attributesTitle}>Conditions:</span>{" "}
+                  {conditions}
+                </p>
+              </div>
             </div>
-            <div className={s.attributes}>
-              <p>
-                <span className={s.attributesTitle}>Speaks:</span> <span className={s.languages}>{languages}</span>
-              </p>
-              <p>
-                <span className={s.attributesTitle}>Lesson Info:</span> {lessonInfo}
-              </p>
-              <p>
-                <span className={s.attributesTitle}>Conditions:</span> {conditions}
-              </p>
-            </div>
+            {!isExpanded && (
+              <div className={s.readMore} onClick={() => setIsExpanded(true)}>
+                <p>Read more</p>
+              </div>
+            )}
           </div>
-          <div className={s.readMore}>
-            <p>Read more</p>
-          </div>
-        </div>
-        <div className={s.bottomRowLevels}>
-          {levels.map((level) => (
-            <div className={s.level} key={level}>
-              <p>{level}</p>
+          {isExpanded && (
+            <div className={s.expanded}>
+              {experience && <p className={s.experience}>{experience}</p>}
+              <div className={s.reviewsContainer}>
+                {Array.isArray(reviews) && reviews.length > 0 && (
+                  <div className={s.reviews}>
+                    {reviews.map((review, index) => {
+                      const reviewerName = review.reviewer_name;
+                      const reviewerAvatar = review.reviewer_name.charAt(0);
+                      const reviewerRating = review.reviewer_rating;
+                      const comment = review.comment;
+                      return (
+                        <div key={index} className={s.reviewItem}>
+                          <div className={s.reviewHeader}>
+                            <div className={s.reviewAvatar}>
+                              {reviewerAvatar}
+                            </div>
+                            <div className={s.reviewMeta}>
+                              <span className={s.reviewName}>
+                                {reviewerName}
+                              </span>
+                              {Number.isFinite(Number(reviewerRating)) && (
+                                <div className={s.reviewRating}>
+                                  <img
+                                    src={starIcon}
+                                    alt="star"
+                                    className={s.reviewStar}
+                                  />
+                                  <span className={s.reviewRatingValue}>
+                                    {reviewerRating.toFixed(1)}
+                                  </span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                          {comment && (
+                            <p className={s.reviewComment}>{comment}</p>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              <div className={s.bottomRowLevels}>
+                {levels.map((level) => (
+                  <div className={s.level} key={level}>
+                    <p>{level}</p>
+                  </div>
+                ))}
+              </div>
+              <div>
+                <button
+                  type="button"
+                  className={s.bookButton}
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  Book trial lesson
+                </button>
+              </div>
             </div>
-          ))}
+          )}
         </div>
       </div>
-    </div>
+      {isModalOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setIsModalOpen(false)}
+          className={s.modalOverlay}
+        >
+          <div className={s.modalDialog} onClick={(e) => e.stopPropagation()}>
+            <button
+              aria-label="Close"
+              className={s.modalClose}
+              onClick={() => setIsModalOpen(false)}
+            >
+              ×
+            </button>
+            <BookTrialLesson />
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
