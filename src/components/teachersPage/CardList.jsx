@@ -1,68 +1,93 @@
 import s from "./CardList.module.css";
 import Card from "./Card.jsx";
-import { useState, useEffect } from "react";
-import { database } from "../../db/dbInit.js";
-import { ref, get } from "firebase/database";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { fetchTeachers } from "../../db/teachers.js";
+import LoadMore from "./LoadMore.jsx";
 
-const CardList = () => {
-  const [teachers, setTeachers] = useState([]);
+const CardList = ({ limit = 4, filters = {} }) => {
+  const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [hasMore, setHasMore] = useState(false);
+  const [total, setTotal] = useState(0);
+  const cursorRef = useRef(null);
+
+  const normalizedFilters = useMemo(
+    () => ({
+      language: filters.language || "",
+      level: filters.level || "",
+      pricePerHour: filters.pricePerHour || "",
+    }),
+    [filters.language, filters.level, filters.pricePerHour]
+  );
+
+  const loadFirstPage = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const { items, nextCursor, hasMore, total } = await fetchTeachers({
+        limit,
+        cursor: null,
+        filters: normalizedFilters,
+      });
+      setItems(items);
+      cursorRef.current = nextCursor;
+      setHasMore(hasMore);
+      setTotal(total);
+    } catch (e) {
+      console.warn("Failed to fetch teachers:", e);
+      setItems([]);
+      cursorRef.current = null;
+      setHasMore(false);
+      setTotal(0);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [limit, normalizedFilters]);
+
+  const loadMore = useCallback(async () => {
+    if (!hasMore || isLoadingMore) return;
+    setIsLoadingMore(true);
+    try {
+      const {
+        items: nextItems,
+        nextCursor,
+        hasMore: more,
+      } = await fetchTeachers({
+        limit,
+        cursor: cursorRef.current,
+        filters: normalizedFilters,
+      });
+      setItems((prev) => [...prev, ...nextItems]);
+      cursorRef.current = nextCursor;
+      setHasMore(more);
+    } catch (e) {
+      console.warn("Failed to load more teachers:", e);
+    } finally {
+      setIsLoadingMore(false);
+    }
+  }, [hasMore, isLoadingMore, limit, normalizedFilters]);
 
   useEffect(() => {
-    async function fetchTeachers() {
-      setIsLoading(true);
-      setError(null);
-
-      try {
-        const snapshot = await get(ref(database, "teachers"));
-        if (snapshot.exists()) {
-          const value = snapshot.val();
-
-          let list = [];
-          if (Array.isArray(value)) {
-            list = value
-              .filter(Boolean)
-              .map((teacher, index) => ({ id: index, ...teacher }));
-          } else if (value && typeof value === "object") {
-            list = Object.entries(value).map(([key, teacher]) => ({
-              id: key,
-              ...teacher,
-            }));
-          }
-
-          setTeachers(list);
-          // Log fetched teachers
-          // eslint-disable-next-line no-console
-          console.log("Teachers fetched:", list);
-        } else {
-          // Fallback to sample if DB has no data
-          );
-        }
-      } catch (e) {
-        // Permission denied or any fetch error -> fallback to local sample
-        const fallback = sampleTeachers.map((t, idx) => ({ id: idx, ...t }));
-        setTeachers(fallback);
-        // eslint-disable-next-line no-console
-        console.warn(
-          "Failed to fetch teachers remotely, using fallback sample:",
-          e
-        );
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchTeachers();
-  }, []);
-
-  console.log("All teachers: \n", teachers);
+    loadFirstPage();
+  }, [loadFirstPage]);
 
   return (
     <div className={s.cardListContainer}>
       {isLoading && <div>Loading...</div>}
-      {error && <div>Failed to load</div>}
-      {!isLoading && !error && teachers.map((t) => <Card key={t.id} {...t} />)}
+      {!isLoading && items.map((t) => <Card key={t.id} {...t} />)}
+      {!isLoading && items.length === 0 && <div>No results</div>}
+      {!isLoading && hasMore && (
+        <LoadMore
+          onClick={loadMore}
+          disabled={!hasMore}
+          isLoading={isLoadingMore}
+        />
+      )}
+      {!isLoading && total > 0 && (
+        <div style={{ width: "100%", textAlign: "center", marginTop: 8 }}>
+          Showing {items.length} of {total}
+        </div>
+      )}
     </div>
   );
 };
