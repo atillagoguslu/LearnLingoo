@@ -4,8 +4,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../utilities/validations";
 import s from "./login.module.css";
 import { signIn } from "../../db/auth";
+import { useNavigate } from "react-router";
 
 const LoginModal = ({ onClose }) => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -22,6 +24,7 @@ const LoginModal = ({ onClose }) => {
     try {
       await signIn(data.email, data.password);
       onClose?.();
+      navigate("/teachers");
     } catch (e) {
       const message = e?.message || "Failed to log in. Please try again.";
       setFormError(message);

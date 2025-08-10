@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router"; // Not  react-route
 import Home from "./pages/HomePage.jsx";
 import Teachers from "./pages/TeachersPage.jsx";
 import Favorites from "./pages/FavoritesPage.jsx";
+import PageAuthorization from "./utilities/pageAuthorization.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -14,8 +15,10 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route path="/" element={<Home />} />
-          <Route path="/teachers" element={<Teachers />} />
-          <Route path="/favorites" element={<Favorites />} />
+          <Route element={<PageAuthorization />}>
+            <Route path="/teachers" element={<Teachers />} />
+            <Route path="/favorites" element={<Favorites />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

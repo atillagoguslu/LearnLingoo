@@ -168,13 +168,13 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #f4c550;
+  background: #9fb7ce;
   transform: scale(0);
   transition: transform 120ms ease-in-out;
 }
 
 .radioInput:checked {
-  border-color: #f4c550;
+  border-color: #9fb7ce;
 }
 
 .radioInput:checked::after {
@@ -224,7 +224,7 @@
   width: 100%;
   max-width: 438px;
   height: 60px;
-  background: #f4c550;
+  background: #9fb7ce;
   margin-top: 22px;
   border: none;
   cursor: pointer;

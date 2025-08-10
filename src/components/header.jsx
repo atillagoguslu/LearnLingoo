@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import s from "./Header.module.css";
 import { ukraine, login } from "../constants/ImportedImages.js";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import LoginModal from "./modals/login.jsx";
 import RegistrationModal from "./modals/registration.jsx";
 import { getSavedSession, subscribeToAuthState, signOutUser } from "../db/auth";
@@ -10,7 +10,7 @@ const Header = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
   const [session, setSession] = useState(() => getSavedSession());
-
+  const navigate = useNavigate();
   const handleLogin = () => setIsLoginOpen(true);
   const handleRegistration = () => setIsRegistrationOpen(true);
   const closeLogin = () => setIsLoginOpen(false);
@@ -24,6 +24,7 @@ const Header = () => {
   const handleLogout = async () => {
     try {
       await signOutUser();
+      navigate("/");
     } catch (_) {
       // ignore
     }
