@@ -1,4 +1,5 @@
 import s from "./TeacherFilter.module.css";
+import Select from "./Select";
 
 const TeacherFilter = ({
   language = "",
@@ -13,60 +14,57 @@ const TeacherFilter = ({
 
   return (
     <div className={s.teacherFilterContainer}>
-      <div className={s.filterPart}>
-        <p className={s.filterText}>Language</p>
-        <select
-          className={s.filterSelect}
-          name="language"
-          value={language}
-          onChange={handleSelectChange}
-        >
-          <option value="">All</option>
-          <option value="french">French</option>
-          <option value="english">English</option>
-          <option value="german">German</option>
-          <option value="ukrainian">Ukrainian</option>
-          <option value="polish">Polish</option>
-          <option value="spanish">Spanish</option>
-          <option value="italian">Italian</option>
-          <option value="portuguese">Portuguese</option>
-          <option value="russian">Russian</option>
-          <option value="turkish">Turkish</option>
-          <option value="arabic">Arabic</option>
-        </select>
-      </div>
-      <div className={s.filterPart}>
-        <p className={s.filterText}>Level of knowledge</p>
-        <select
-          className={s.filterSelect}
-          name="level"
-          value={level}
-          onChange={handleSelectChange}
-        >
-          <option value="">All</option>
-          <option value="A1 Beginner">A1 Beginner</option>
-          <option value="A2 Elementary">A2 Elementary</option>
-          <option value="B1 Intermediate">B1 Intermediate</option>
-          <option value="B2 Upper-Intermediate">B2 Upper-Intermediate</option>
-          <option value="C1 Advanced">C1 Advanced</option>
-          <option value="C2 Proficient">C2 Proficient</option>
-        </select>
-      </div>
-      <div className={s.filterPart}>
-        <p className={s.filterText}>Price</p>
-        <select
-          className={s.filterSelect}
-          name="pricePerHour"
-          value={pricePerHour}
-          onChange={handleSelectChange}
-        >
-          <option value="">All</option>
-          <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="30">30</option>
-          <option value="40">40</option>
-        </select>
-      </div>
+      <Select
+        label="Languages"
+        name="language"
+        value={language}
+        onChange={handleSelectChange}
+        options={[
+          { value: "french", label: "French" },
+          { value: "english", label: "English" },
+          { value: "german", label: "German" },
+          { value: "ukrainian", label: "Ukrainian" },
+          { value: "polish", label: "Polish" },
+          { value: "spanish", label: "Spanish" },
+          { value: "italian", label: "Italian" },
+          { value: "portuguese", label: "Portuguese" },
+          { value: "russian", label: "Russian" },
+          { value: "turkish", label: "Turkish" },
+          { value: "arabic", label: "Arabic" },
+        ]}
+        placeholder="All"
+        className={s.filterPart}
+      />
+      <Select
+        label="Level of knowledge"
+        name="level"
+        value={level}
+        onChange={handleSelectChange}
+        options={[
+          { value: "A1 Beginner", label: "A1 Beginner" },
+          { value: "A2 Elementary", label: "A2 Elementary" },
+          { value: "B1 Intermediate", label: "B1 Intermediate" },
+          { value: "B2 Upper-Intermediate", label: "B2 Upper-Intermediate" },
+          { value: "C1 Advanced", label: "C1 Advanced" },
+          { value: "C2 Proficient", label: "C2 Proficient" },
+        ]}
+        placeholder="All"
+        className={s.filterPart}
+      />
+      <Select
+        label="Price"
+        name="pricePerHour"
+        value={pricePerHour}
+        onChange={handleSelectChange}
+        options={[
+          { value: "10", label: "10" },
+          { value: "20", label: "20" },
+          { value: "30", label: "30" },
+          { value: "40", label: "40" },
+        ]}
+        placeholder="All"
+        className={s.filterPart}
+      />
     </div>
   );
 };
