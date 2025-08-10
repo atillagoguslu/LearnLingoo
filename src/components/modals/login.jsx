@@ -1,8 +1,9 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../utilities/validations";
 import s from "./login.module.css";
+import { signIn } from "../../db/auth";
 
 const LoginModal = ({ onClose }) => {
   const {
@@ -14,12 +15,17 @@ const LoginModal = ({ onClose }) => {
     mode: "onBlur",
   });
 
+  const [formError, setFormError] = useState("");
+
   const onSubmit = async (data) => {
-    // TODO: Integrate Firebase sign-in here
-    // Example: await signIn(data.email, data.password)
-    // For now, just log and close
-    // eslint-disable-next-line no-console
-    console.log("Login form submitted:", data);
+    setFormError("");
+    try {
+      await signIn(data.email, data.password);
+      onClose?.();
+    } catch (e) {
+      const message = e?.message || "Failed to log in. Please try again.";
+      setFormError(message);
+    }
   };
 
   const handleKeyDown = useCallback(
@@ -70,6 +76,7 @@ const LoginModal = ({ onClose }) => {
                 onSubmit={handleSubmit(onSubmit)}
                 noValidate
               >
+                {formError && <p className={s.errorText}>{formError}</p>}
                 <div className={s.formGroup}>
                   <input
                     id="email"

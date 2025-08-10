@@ -1,8 +1,9 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registrationSchema } from "../../utilities/validations";
 import s from "./registration.module.css";
+import { signUp } from "../../db/auth";
 
 const RegistrationModal = ({ onClose }) => {
   const {
@@ -14,11 +15,17 @@ const RegistrationModal = ({ onClose }) => {
     mode: "onBlur",
   });
 
+  const [formError, setFormError] = useState("");
+
   const onSubmit = async (data) => {
-    // TODO: Integrate Firebase sign-up here
-    // Example: await signUp(data.name, data.email, data.password)
-    // eslint-disable-next-line no-console
-    console.log("Registration form submitted:", data);
+    setFormError("");
+    try {
+      await signUp(data.name, data.email, data.password);
+      onClose?.();
+    } catch (e) {
+      const message = e?.message || "Failed to sign up. Please try again.";
+      setFormError(message);
+    }
   };
 
   const handleKeyDown = useCallback(
@@ -71,6 +78,7 @@ const RegistrationModal = ({ onClose }) => {
                 onSubmit={handleSubmit(onSubmit)}
                 noValidate
               >
+                {formError && <p className={s.errorText}>{formError}</p>}
                 <div className={s.formGroup}>
                   <input
                     id="name"

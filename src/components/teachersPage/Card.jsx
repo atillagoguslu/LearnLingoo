@@ -9,13 +9,8 @@ import {
   star as starIcon,
   book as bookIcon,
 } from "../../constants/ImportedImages";
-import {
-  loadJson,
-  saveJson,
-  loadAuthSession,
-} from "../../utilities/localStorage";
-
-const FAVORITES_KEY = "learnlingo.favorites.v1";
+import { loadAuthSession } from "../../utilities/localStorage";
+import { subscribeToFavorites, toggleFavorite } from "../../db/auth";
 
 function joinWithComma(values) {
   if (!values) return "";
@@ -43,15 +38,6 @@ function getLevels(teacher) {
   return [];
 }
 
-function loadFavorites() {
-  const set = new Set(loadJson(FAVORITES_KEY, []));
-  return set;
-}
-
-function saveFavorites(set) {
-  saveJson(FAVORITES_KEY, Array.from(set));
-}
-
 const Card = (props) => {
   const {
     id,
@@ -75,29 +61,35 @@ const Card = (props) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Initialize favorite state from localStorage
+  // Sync favorite state from Firebase for logged in user
   useEffect(() => {
-    const favorites = loadFavorites();
-    setIsFavorite(favorites.has(String(id)) || favorites.has(Number(id)));
-  }, [id]);
-
-  const toggleFavorite = useCallback(() => {
     const session = loadAuthSession();
     if (!session) {
-      // No auth: notify
+      setIsFavorite(false);
+      return undefined;
+    }
+    const unsub = subscribeToFavorites(session.uid, (list) => {
+      const has =
+        list.includes(String(id)) || list.includes(String(Number(id)));
+      setIsFavorite(has);
+    });
+    return () => unsub && unsub();
+  }, [id]);
+
+  const onToggleFavorite = useCallback(async () => {
+    const session = loadAuthSession();
+    if (!session) {
       window.alert("Only authorized users can add to favorites.");
       return;
     }
-    const favorites = loadFavorites();
-    const key = String(id);
-    if (favorites.has(key)) {
-      favorites.delete(key);
-      setIsFavorite(false);
-    } else {
-      favorites.add(key);
-      setIsFavorite(true);
+    try {
+      const next = await toggleFavorite(session.uid, String(id));
+      const has = next.includes(String(id));
+      setIsFavorite(has);
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.warn("Failed to toggle favorite", e);
     }
-    saveFavorites(favorites);
   }, [id]);
 
   // Modal ESC close
@@ -150,7 +142,7 @@ const Card = (props) => {
                       </li>
                     </ul>
                   </div>
-                  <div className={s.favButton} onClick={toggleFavorite}>
+                  <div className={s.favButton} onClick={onToggleFavorite}>
                     <img
                       src={isFavorite ? favIcon : notFavIcon}
                       alt="favorite"
