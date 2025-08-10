@@ -8,10 +8,10 @@
 .bookTrialLessonContent {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 40px;
   width: 100%;
   height: 100%;
-  padding: 16px;
+  padding: 64px;
   overflow: auto;
 }
 
@@ -52,4 +52,191 @@
   line-height: 1;
   color: #121417;
   cursor: pointer;
+}
+
+/* Header */
+.headerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  color: #121417;
+}
+
+.description {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 137%;
+  color: rgba(18, 20, 23, 0.8);
+}
+
+.teacherRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.teacherAvatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.teacherMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.teacherMetaLabel {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 12px;
+  color: #8a8a89;
+}
+
+.teacherName {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  color: #121417;
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 22px;
+}
+
+.legend {
+  margin-bottom: 12px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 120%;
+  color: #121417;
+}
+
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.radioOption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+/* Custom radio that matches the design (gold ring with gold dot) */
+.radioInput {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 3px solid rgba(18, 20, 23, 0.2);
+  background: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.radioInput::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #f4c550;
+  transform: scale(0);
+  transition: transform 120ms ease-in-out;
+}
+
+.radioInput:checked {
+  border-color: #f4c550;
+}
+
+.radioInput:checked::after {
+  transform: scale(1);
+}
+
+.radioInput:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(244, 197, 80, 0.25);
+}
+
+.radioLabel {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #121417;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input {
+  border-radius: 12px;
+  padding: 14px 16px;
+  height: 52px;
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  background: #fff;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #f4c550;
+  box-shadow: 0 0 0 3px rgba(244, 197, 80, 0.25);
+}
+
+.errorText {
+  color: #e11d48;
+  font-size: 12px;
+}
+
+.bookButton {
+  border-radius: 12px;
+  width: 100%;
+  max-width: 438px;
+  height: 60px;
+  background: #f4c550;
+  margin-top: 22px;
+  border: none;
+  cursor: pointer;
+
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 156%;
+  color: #121417;
+}
+
+.bookButton[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
 }

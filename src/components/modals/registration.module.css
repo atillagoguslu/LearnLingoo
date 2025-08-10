@@ -8,7 +8,7 @@
 .registrationContent {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 40px;
   width: 100%;
   height: 100%;
   padding: 64px;
@@ -124,10 +124,10 @@
 
 .registrationButton {
   border-radius: 12px;
-  padding: 16px 210px;
   width: 438px;
   height: 60px;
   background: #f4c550;
+  margin-top: 22px;
 
   font-family: var(--font-family);
   font-weight: 700;
@@ -137,6 +137,8 @@
   border: none;
   cursor: pointer;
   text-wrap: nowrap;
+  text-align: center;
+  text-justify: center;
 }
 
 .registrationButton[disabled] {

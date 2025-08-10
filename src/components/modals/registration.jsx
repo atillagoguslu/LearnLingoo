@@ -72,14 +72,11 @@ const RegistrationModal = ({ onClose }) => {
                 noValidate
               >
                 <div className={s.formGroup}>
-                  <label htmlFor="name" className={s.label}>
-                    Name
-                  </label>
                   <input
                     id="name"
                     type="text"
                     className={s.input}
-                    placeholder="Your name"
+                    placeholder="Name"
                     autoComplete="name"
                     {...register("name")}
                   />
@@ -89,14 +86,11 @@ const RegistrationModal = ({ onClose }) => {
                 </div>
 
                 <div className={s.formGroup}>
-                  <label htmlFor="email" className={s.label}>
-                    Email
-                  </label>
                   <input
                     id="email"
                     type="email"
                     className={s.input}
-                    placeholder="your@email.com"
+                    placeholder="E-Mail"
                     autoComplete="email"
                     {...register("email")}
                   />
@@ -106,14 +100,11 @@ const RegistrationModal = ({ onClose }) => {
                 </div>
 
                 <div className={s.formGroup}>
-                  <label htmlFor="password" className={s.label}>
-                    Password
-                  </label>
                   <input
                     id="password"
                     type="password"
                     className={s.input}
-                    placeholder="Enter your password"
+                    placeholder="Password"
                     autoComplete="new-password"
                     {...register("password")}
                   />

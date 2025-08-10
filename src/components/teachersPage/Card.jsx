@@ -271,7 +271,15 @@ const Card = (props) => {
             >
               ×
             </button>
-            <BookTrialLesson />
+            <BookTrialLesson
+              teacher={{
+                id,
+                name,
+                surname,
+                avatarUrl: avatarUrl || defaultAvatar,
+              }}
+              onClose={() => setIsModalOpen(false)}
+            />
           </div>
         </div>
       )}
