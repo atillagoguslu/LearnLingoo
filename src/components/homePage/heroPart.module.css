@@ -75,3 +75,60 @@
   width: 100%;
   height: 33px;
 }
+
+@media (max-width: 1024px) {
+  .heroPartContainer {
+    min-width: auto;
+    padding: 64px 32px;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+  .highlight {
+    width: 180px;
+    height: 32px;
+    top: 10px;
+  }
+
+  .description {
+    max-width: 100%;
+  }
+
+  .button {
+    margin-top: 40px;
+    width: 220px;
+    height: 54px;
+    padding: 12px 56px;
+  }
+}
+
+@media (max-width: 640px) {
+  .heroPartContainer {
+    padding: 32px 16px;
+    border-radius: 20px;
+  }
+
+  .title {
+    font-size: 32px;
+    line-height: 120%;
+  }
+
+  .highlight {
+    width: 150px;
+    height: 28px;
+    top: 8px;
+  }
+
+  .button {
+    width: 100%;
+    max-width: 280px;
+    height: 52px;
+    padding: 12px 24px;
+  }
+
+  .buttonText {
+    font-size: 15px;
+  }
+}

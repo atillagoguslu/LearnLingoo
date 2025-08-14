@@ -75,3 +75,19 @@
 .active {
   color: #121417;
 }
+
+@media (max-width: 1024px) {
+  .trigger {
+    width: 200px;
+  }
+}
+
+@media (max-width: 640px) {
+  .trigger {
+    width: 100%;
+  }
+
+  .popover {
+    width: 100%;
+  }
+}

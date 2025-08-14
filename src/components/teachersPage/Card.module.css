@@ -371,3 +371,60 @@
   line-height: 156%;
   color: #121417;
 }
+
+@media (max-width: 1024px) {
+  .cardContainer {
+    gap: 24px;
+    padding: 20px;
+  }
+
+  .nameAndStatus {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .status {
+    width: 100%;
+  }
+
+  .infos ul {
+    flex-wrap: wrap;
+  }
+
+  .bookButton {
+    width: 200px;
+    height: 54px;
+  }
+}
+
+@media (max-width: 640px) {
+  .cardContainer {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .avatarColumn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .contentColumn {
+    gap: 12px;
+  }
+
+  .infos ul {
+    gap: 12px;
+  }
+
+  .level {
+    padding: 8px 10px;
+  }
+
+  .bookButton {
+    width: 100%;
+    max-width: 280px;
+    height: 52px;
+  }
+}
